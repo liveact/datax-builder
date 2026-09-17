@@ -1,0 +1,14 @@
+node_modules/
+dist/
+dist-ssr/
+.npm
+*.tsbuildinfo
+*.log
+*.local
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+.cursor/
+.agents/

@@ -1,0 +1,46 @@
+# ============================================================
+# DataX Builder 配置文件
+# 复制此文件为 config.yaml 后修改
+# ============================================================
+
+# ------------------------------------------------------------
+# 服务配置
+# ------------------------------------------------------------
+server:
+  # JWT 签名密钥，用于签发和验证登录令牌
+  # 密钥更换后所有已登录用户需重新登录
+  # 生产环境必须设置，生成方式：openssl rand -hex 32
+  jwt_secret: ~
+  # 开发模式（true 允许使用默认 JWT 密钥，生产环境设为 false）
+  dev_mode: true
+  # CORS 允许的来源（逗号分隔，默认 *）
+  cors_origins: "*"
+
+# ------------------------------------------------------------
+# 数据源列表（至少配置一个）
+# ------------------------------------------------------------
+datasources:
+  - name: source_mysql        # 数据源名称（页面选择时显示）
+    type: mysql                # 类型，目前仅支持 mysql
+    host: 127.0.0.1            # 数据库主机
+    port: 3306                 # 端口
+    username: root             # 用户名
+    password: root             # 密码
+
+  - name: target_mysql
+    type: mysql
+    host: 127.0.0.1
+    port: 3306
+    username: root
+    password: root
+
+# ------------------------------------------------------------
+# 用户账户
+# password_hash 为 bcrypt 哈希值，可通过以下命令生成：
+#   python -c "from passlib.hash import bcrypt; print(bcrypt.hash('your_password'))"
+# 或：
+#   htpasswd -nbBC 12 '' 'your_password' | cut -d: -f2
+# ------------------------------------------------------------
+users:
+  admin:
+    password_hash: "$2b$12$LJ3mFGT1GbFPDqJXrmxSxu0dW60EmmA78XKELQE/9jdnqEsOY5VzS"  # 默认密码: admin123
